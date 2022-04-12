@@ -1,0 +1,19 @@
+kubectl create deployment hellonginx --image=nginx:1.16 --replicas=3
+kubectl get pods
+kubectl rollout status deployment/hellonginx
+kubectl set image deployment/hellonginx nginx=nginx:1.8
+kubectl rollout status deployment/hellonginx
+watch -n1 kubectl get pods
+kubectl get deployment hellonginx -o yaml
+
+kubectl rollout history deployment/hellonginx
+kubectl rollout undo deployment/hellonginx
+
+kubectl scale deployment hellonginx --current-replicas=3 --replicas=2
+kubectl get pods
+kubectl scale deployment hellonginx --current-replicas=2 --replicas=4
+kubectl get pods
+
+
+kubectl delete deployment hellonginx
+kubectl get pods
